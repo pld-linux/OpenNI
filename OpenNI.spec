@@ -211,6 +211,7 @@ fi
 %attr(755,root,root) %{_libdir}/libnimCodecs.so
 %attr(755,root,root) %{_libdir}/libnimMockNodes.so
 %attr(755,root,root) %{_libdir}/libnimRecorder.so
+%dir /var/lib/ni
 
 %files devel
 %defattr(644,root,root,755)
