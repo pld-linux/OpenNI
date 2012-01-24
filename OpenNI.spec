@@ -24,8 +24,9 @@ Patch1:		%{name}-link.patch
 Patch2:		%{name}-nosse.patch
 URL:		http://openni.org/
 BuildRequires:	OpenGL-devel
+# for examples
+BuildRequires:	OpenGL-glut-devel >= 3
 %{?with_apidocs:BuildRequires:	doxygen}
-#BuildRequires:	freeglut-devel >= 3
 %{?with_apidocs:BuildRequires:	graphviz}
 %{?with_java:BuildRequires:	jdk >= 1.6.0}
 BuildRequires:	libjpeg-devel
