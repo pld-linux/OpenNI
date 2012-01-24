@@ -34,6 +34,7 @@ BuildRequires:	libusb-devel >= 1.0.8
 %{?with_mono:BuildRequires:	mono-csharp}
 BuildRequires:	python >= 1:2.6
 BuildRequires:	sed >= 4.0
+# NOTE: other platforms need adding a dozen of defines in Include/Linux-*/*.h
 ExclusiveArch:	%{ix86} %{x8664} arm
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
