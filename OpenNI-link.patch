@@ -1,0 +1,55 @@
+--- OpenNI-OpenNI-1516074/Platform/Linux/Build/Samples/NiViewer/Makefile.orig	2012-01-04 12:35:46.000000000 +0100
++++ OpenNI-OpenNI-1516074/Platform/Linux/Build/Samples/NiViewer/Makefile	2012-01-22 19:00:47.774268787 +0100
+@@ -11,7 +11,7 @@
+ ifeq ("$(OSTYPE)","Darwin")
+ 	LDFLAGS += -framework OpenGL -framework GLUT
+ else
+-	USED_LIBS += glut
++	USED_LIBS += glut GL
+ endif
+ 
+ USED_LIBS += OpenNI
+--- OpenNI-OpenNI-1516074/Platform/Linux/Build/Samples/NiSimpleViewer/Makefile.orig	2012-01-04 12:35:46.000000000 +0100
++++ OpenNI-OpenNI-1516074/Platform/Linux/Build/Samples/NiSimpleViewer/Makefile	2012-01-22 19:11:47.600957548 +0100
+@@ -11,7 +11,7 @@
+ ifeq ("$(OSTYPE)","Darwin")
+ 	LDFLAGS += -framework OpenGL -framework GLUT
+ else
+-	USED_LIBS += glut
++	USED_LIBS += glut GL
+ endif
+ 
+ USED_LIBS += OpenNI
+--- OpenNI-OpenNI-1516074/Platform/Linux/Build/Samples/NiUserTracker/Makefile.orig	2012-01-04 12:35:46.000000000 +0100
++++ OpenNI-OpenNI-1516074/Platform/Linux/Build/Samples/NiUserTracker/Makefile	2012-01-22 19:26:00.357652766 +0100
+@@ -12,7 +12,7 @@
+ 	ifeq ("$(OSTYPE)","Darwin")
+ 		LDFLAGS += -framework OpenGL -framework GLUT
+ 	else
+-		USED_LIBS += glut
++		USED_LIBS += glut GL
+ 	endif
+ else
+ 	ifeq "$(GLES_SUPPORTED)" "1"
+--- OpenNI-OpenNI-1516074/Platform/Linux/Build/Samples/NiUserSelection/Makefile.orig	2012-01-04 12:35:46.000000000 +0100
++++ OpenNI-OpenNI-1516074/Platform/Linux/Build/Samples/NiUserSelection/Makefile	2012-01-22 19:38:42.454344951 +0100
+@@ -12,7 +12,7 @@
+ 	ifeq ("$(OSTYPE)","Darwin")
+ 		LDFLAGS += -framework OpenGL -framework GLUT
+ 	else
+-		USED_LIBS += glut
++		USED_LIBS += glut GL
+ 	endif
+ else
+ 	ifeq "$(GLES_SUPPORTED)" "1"
+--- OpenNI-OpenNI-1516074/Platform/Linux/Build/Samples/NiHandTracker/Makefile.orig	2012-01-04 12:35:46.000000000 +0100
++++ OpenNI-OpenNI-1516074/Platform/Linux/Build/Samples/NiHandTracker/Makefile	2012-01-22 19:44:53.017690692 +0100
+@@ -11,7 +11,7 @@
+ ifeq ("$(OSTYPE)","Darwin")
+ 	LDFLAGS += -framework OpenGL -framework GLUT
+ else
+-	USED_LIBS += glut
++	USED_LIBS += glut GL
+ endif
+ 
+ USED_LIBS += OpenNI

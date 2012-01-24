@@ -1,0 +1,10 @@
+--- OpenNI-OpenNI-1516074/Platform/Linux/Build/Common/Platform.x86.orig	2012-01-04 12:35:46.000000000 +0100
++++ OpenNI-OpenNI-1516074/Platform/Linux/Build/Common/Platform.x86	2012-01-24 16:08:44.899709117 +0100
+@@ -19,7 +19,5 @@
+ 		ifeq ($(SSSE3_ENABLED), 1)
+ 			CFLAGS += -mssse3
+ 		endif
+-	else
+-		DUMMY:=($error "Only SSE2 and SSE3 are supported")
+ 	endif
+ endif
