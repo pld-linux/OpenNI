@@ -34,6 +34,7 @@ BuildRequires:	libstdc++-devel >= 6:4.0
 BuildRequires:	libusb-devel >= 1.0.8
 %{?with_mono:BuildRequires:	mono-csharp}
 BuildRequires:	python >= 1:2.6
+BuildRequires:	rpmbuild(macros) >= 1.566
 BuildRequires:	sed >= 4.0
 # NOTE: other platforms need adding a dozen of defines in Include/Linux-*/*.h
 ExclusiveArch:	%{ix86} %{x8664} arm
@@ -136,6 +137,7 @@ Interfejs .NET do OpenNI.
 
 %prep
 %setup -q -n OpenNI-OpenNI-1516074
+%undos Platform/Linux/Build/Samples/NiUserTracker/Makefile
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
