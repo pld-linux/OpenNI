@@ -90,6 +90,9 @@ Pliki nagłówkowe biblioteki OpenNI.
 Summary:	OpenNI user guide
 Summary(pl.UTF-8):	Podręcznik użytkownika OpenNI
 Group:		Documentation
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description doc
 OpenNI user guide in PDF format.
