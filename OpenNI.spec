@@ -6,7 +6,7 @@
 %bcond_with	sse2		# use SSE2 instructions
 %bcond_with	sse3		# use SSE3 instructions
 %bcond_with	ssse3		# use SSE3 and SSSE3 instructions
-#
+
 %if %{with ssse}
 %define	with_sse3	1
 %endif
@@ -14,7 +14,7 @@ Summary:	OpenNI framework for Natural Interaction devices
 Summary(pl.UTF-8):	Szkielet OpenNI do urządzeń służących interakcji z naturą
 Name:		OpenNI
 Version:	1.5.2.23
-Release:	1
+Release:	2
 License:	LGPL v3+
 Group:		Libraries
 Source0:	https://github.com/OpenNI/OpenNI/tarball/Stable-%{version}#/%{name}-%{version}.tar.gz
@@ -101,6 +101,9 @@ Podręcznik użytkownika OpenNI w formacie PDF.
 Summary:	OpenNI API documentation
 Summary(pl.UTF-8):	Dokumentacja API biblioteki OpenNI
 Group:		Documentation
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description apidocs
 API and internal documentation for OpenNI library.
@@ -136,7 +139,7 @@ Requires:	mono
 Interfejs .NET do OpenNI.
 
 %prep
-%setup -q -n OpenNI-OpenNI-1516074
+%setup -q -n %{name}-OpenNI-1516074
 %undos Platform/Linux/Build/Samples/NiUserTracker/Makefile
 %patch0 -p1
 %patch1 -p1
@@ -166,9 +169,9 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir},%{_includedir}/ni,/var/lib/ni}
 
 BDIR=Platform/Linux/Bin/%{openni_platform}-PLD
-install ${BDIR}/ni{Reg,License} $RPM_BUILD_ROOT%{_bindir}
-install ${BDIR}/libOpenNI.so $RPM_BUILD_ROOT%{_libdir}
-install ${BDIR}/libnim{Codecs,MockNodes,Recorder}.so $RPM_BUILD_ROOT%{_libdir}
+install -p ${BDIR}/ni{Reg,License} $RPM_BUILD_ROOT%{_bindir}
+install -p ${BDIR}/libOpenNI.so $RPM_BUILD_ROOT%{_libdir}
+install -p ${BDIR}/libnim{Codecs,MockNodes,Recorder}.so $RPM_BUILD_ROOT%{_libdir}
 cp -p Include/*.h $RPM_BUILD_ROOT%{_includedir}/ni
 %ifarch %{ix86} %{x8664}
 cp -pr Include/Linux-x86 $RPM_BUILD_ROOT%{_includedir}/ni
@@ -179,8 +182,8 @@ cp -pr Include/Linux-Arm $RPM_BUILD_ROOT%{_includedir}/ni
 
 %if %{with java}
 install -d $RPM_BUILD_ROOT%{_javadir}
-install ${BDIR}/libOpenNI.jni.so $RPM_BUILD_ROOT%{_libdir}
-install ${BDIR}/org.OpenNI.jar $RPM_BUILD_ROOT%{_javadir}
+install -p ${BDIR}/libOpenNI.jni.so $RPM_BUILD_ROOT%{_libdir}
+cp -p ${BDIR}/org.OpenNI.jar $RPM_BUILD_ROOT%{_javadir}
 %endif
 
 %if %{with mono}
@@ -192,13 +195,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/ldconfig
-for mod in libnimMockNodes.so libnimCodecs.so libnimRecorder.so ; do
+for mod in libnimMockNodes.so libnimCodecs.so libnimRecorder.so; do
 	%{_bindir}/niReg -r %{_libdir}/$mod
 done
 
 %preun
 if [ "$1" = "0" ]; then
-	for mod in libnimMockNodes.so libnimCodecs.so libnimRecorder.so ; do
+	for mod in libnimMockNodes.so libnimCodecs.so libnimRecorder.so; do
 		%{_bindir}/niReg -u %{_libdir}/$mod
 	done
 fi
