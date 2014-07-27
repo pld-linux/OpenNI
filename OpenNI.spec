@@ -15,7 +15,7 @@ Summary(pl.UTF-8):	Szkielet OpenNI do urządzeń służących interakcji z natur
 Name:		OpenNI
 Version:	1.5.7.10
 Release:	1
-License:	LGPL v3+
+License:	Apache v2.0
 Group:		Libraries
 Source0:	https://github.com/OpenNI/OpenNI/tarball/Stable-%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	5c6072e875a72180a696ee60460ba347
