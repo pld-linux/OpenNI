@@ -13,15 +13,14 @@
 Summary:	OpenNI framework for Natural Interaction devices
 Summary(pl.UTF-8):	Szkielet OpenNI do urządzeń służących interakcji z naturą
 Name:		OpenNI
-Version:	1.5.2.23
-Release:	2
+Version:	1.5.7.10
+Release:	1
 License:	LGPL v3+
 Group:		Libraries
-Source0:	https://github.com/OpenNI/OpenNI/tarball/Stable-%{version}#/%{name}-%{version}.tar.gz
-# Source0-md5:	12389c56bf3685a741f6bcfa068585ff
+Source0:	https://github.com/OpenNI/OpenNI/tarball/Stable-%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	5c6072e875a72180a696ee60460ba347
 Patch0:		%{name}-system-libs.patch
-Patch1:		%{name}-link.patch
-Patch2:		%{name}-nosse.patch
+Patch1:		%{name}-nosse.patch
 URL:		http://openni.org/
 BuildRequires:	OpenGL-devel
 # for examples
@@ -142,13 +141,10 @@ Requires:	mono
 Interfejs .NET do OpenNI.
 
 %prep
-%setup -q -n %{name}-OpenNI-1516074
+%setup -q -n %{name}-OpenNI-1e9524f
 %undos Platform/Linux/Build/Samples/NiUserTracker/Makefile
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
-
-sed -i -e 's/﻿//' Wrappers/OpenNI.net/*.cs Samples/*.net/*.cs
 
 %build
 %{__make} -C Platform/Linux/Build clean
@@ -186,7 +182,7 @@ cp -pr Include/Linux-Arm $RPM_BUILD_ROOT%{_includedir}/ni
 %if %{with java}
 install -d $RPM_BUILD_ROOT%{_javadir}
 install -p ${BDIR}/libOpenNI.jni.so $RPM_BUILD_ROOT%{_libdir}
-cp -p ${BDIR}/org.OpenNI.jar $RPM_BUILD_ROOT%{_javadir}
+cp -p ${BDIR}/org.openni.jar $RPM_BUILD_ROOT%{_javadir}
 %endif
 
 %if %{with mono}
@@ -213,7 +209,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc CHANGES README
+%doc CHANGES NOTICE README
 %attr(755,root,root) %{_bindir}/niLicense
 %attr(755,root,root) %{_bindir}/niReg
 %attr(755,root,root) %{_libdir}/libOpenNI.so
@@ -240,7 +236,7 @@ fi
 %files -n java-OpenNI
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libOpenNI.jni.so
-%{_javadir}/org.OpenNI.jar
+%{_javadir}/org.openni.jar
 %endif
 
 %if %{with mono}
