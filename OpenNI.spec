@@ -7,7 +7,7 @@
 %bcond_with	sse3		# use SSE3 instructions
 %bcond_with	ssse3		# use SSE3 and SSSE3 instructions
 
-%if %{with ssse}
+%if %{with ssse3}
 %define	with_sse3	1
 %endif
 Summary:	OpenNI framework for Natural Interaction devices
@@ -206,6 +206,9 @@ if [ "$1" = "0" ]; then
 fi
 
 %postun	-p /sbin/ldconfig
+
+%post	-n java-OpenNI -p /sbin/ldconfig
+%postun	-n java-OpenNI -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
