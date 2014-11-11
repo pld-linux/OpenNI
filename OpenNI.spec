@@ -14,11 +14,12 @@ Summary:	OpenNI framework for Natural Interaction devices
 Summary(pl.UTF-8):	Szkielet OpenNI do urządzeń służących interakcji z naturą
 Name:		OpenNI
 Version:	1.5.7.10
-Release:	1
+Release:	2
 License:	Apache v2.0
 Group:		Libraries
 Source0:	https://github.com/OpenNI/OpenNI/tarball/Stable-%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	5c6072e875a72180a696ee60460ba347
+Source1:	libopenni.pc
 Patch0:		%{name}-system-libs.patch
 Patch1:		%{name}-nosse.patch
 URL:		http://openni.org/
@@ -141,7 +142,7 @@ Requires:	mono
 Interfejs .NET do OpenNI.
 
 %prep
-%setup -q -n %{name}-OpenNI-1e9524f
+%setup -q -n %{name}-%{name}-1e9524f
 %undos Platform/Linux/Build/Samples/NiUserTracker/Makefile
 %patch0 -p1
 %patch1 -p1
@@ -189,6 +190,14 @@ cp -p ${BDIR}/org.openni.jar $RPM_BUILD_ROOT%{_javadir}
 gacutil -i ${BDIR}/OpenNI.net.dll -package 2.0 -root $RPM_BUILD_ROOT%{_prefix}/lib
 %endif
 
+install -d $RPM_BUILD_ROOT%{_pkgconfigdir}
+sed -e 's![@]prefix[@]!%{_prefix}!g' \
+    -e 's![@]exec_prefix[@]!%{_exec_prefix}!g' \
+    -e 's![@]libdir[@]!%{_libdir}!g' \
+    -e 's![@]includedir[@]!%{_includedir}!g' \
+    -e 's![@]version[@]!%{version}!g' \
+    %{SOURCE1} > $RPM_BUILD_ROOT%{_pkgconfigdir}/libopenni.pc
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -224,6 +233,7 @@ fi
 %files devel
 %defattr(644,root,root,755)
 %{_includedir}/ni
+%{_pkgconfigdir}/libopenni.pc
 
 %files doc
 %defattr(644,root,root,755)
