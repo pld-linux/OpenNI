@@ -10,11 +10,14 @@
 %if %{with ssse3}
 %define	with_sse3	1
 %endif
+%ifarch x32
+%undefine	with_mono
+%endif
 Summary:	OpenNI framework for Natural Interaction devices
 Summary(pl.UTF-8):	Szkielet OpenNI do urządzeń służących interakcji z naturą
 Name:		OpenNI
 Version:	1.5.7.10
-Release:	2
+Release:	3
 License:	Apache v2.0
 Group:		Libraries
 Source0:	https://github.com/OpenNI/OpenNI/tarball/Stable-%{version}/%{name}-%{version}.tar.gz
@@ -37,13 +40,13 @@ BuildRequires:	python >= 1:2.6
 BuildRequires:	rpmbuild(macros) >= 1.566
 BuildRequires:	sed >= 4.0
 # NOTE: other platforms need adding a dozen of defines in Include/Linux-*/*.h
-ExclusiveArch:	%{ix86} %{x8664} arm
+ExclusiveArch:	%{ix86} %{x8664} x32 arm
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %ifarch %{ix86}
 %define		openni_platform	x86
 %endif
-%ifarch %{x8664}
+%ifarch %{x8664} x32
 %define		openni_platform	x64
 %endif
 %ifarch arm
@@ -156,7 +159,6 @@ export CFLAGS="%{rpmcflags}"
 	HOSTPLATFORM=%{openni_platform} \
 	SSE_GENERATION=%{?with_sse3:3}%{!?with_sse3:%{?with_sse2:2}} \
 	%{?with_ssse3:SSSE3_ENABLED=1} \
-	%{!?with_mono:MONO_INSTALLED=0} \
 	%{!?with_java:ALL_JAVA_PROJS= JAVA_SAMPLES=}
 
 %if %{with apidocs}
@@ -173,7 +175,7 @@ install -p ${BDIR}/ni{Reg,License} $RPM_BUILD_ROOT%{_bindir}
 install -p ${BDIR}/libOpenNI.so $RPM_BUILD_ROOT%{_libdir}
 install -p ${BDIR}/libnim{Codecs,MockNodes,Recorder}.so $RPM_BUILD_ROOT%{_libdir}
 cp -p Include/*.h $RPM_BUILD_ROOT%{_includedir}/ni
-%ifarch %{ix86} %{x8664}
+%ifarch %{ix86} %{x8664} x32
 cp -pr Include/Linux-x86 $RPM_BUILD_ROOT%{_includedir}/ni
 %endif
 %ifarch arm
