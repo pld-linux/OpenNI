@@ -17,7 +17,7 @@ Summary:	OpenNI framework for Natural Interaction devices
 Summary(pl.UTF-8):	Szkielet OpenNI do urządzeń służących interakcji z naturą
 Name:		OpenNI
 Version:	1.5.7.10
-Release:	3
+Release:	4
 License:	Apache v2.0
 Group:		Libraries
 Source0:	https://github.com/OpenNI/OpenNI/tarball/Stable-%{version}/%{name}-%{version}.tar.gz
