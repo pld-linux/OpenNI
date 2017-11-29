@@ -17,7 +17,7 @@ Summary:	OpenNI framework for Natural Interaction devices
 Summary(pl.UTF-8):	Szkielet OpenNI do urządzeń służących interakcji z naturą
 Name:		OpenNI
 Version:	1.5.7.10
-Release:	4
+Release:	5
 License:	Apache v2.0
 Group:		Libraries
 Source0:	https://github.com/OpenNI/OpenNI/tarball/Stable-%{version}/%{name}-%{version}.tar.gz
@@ -37,7 +37,7 @@ BuildRequires:	OpenGL-glut-devel >= 3
 BuildRequires:	libjpeg-devel
 BuildRequires:	libstdc++-devel >= 6:4.0
 BuildRequires:	libusb-devel >= 1.0.8
-%{?with_mono:BuildRequires:	mono-csharp}
+%{?with_mono:BuildRequires:	mono-csharp >= 4.0}
 BuildRequires:	python >= 1:2.6
 BuildRequires:	rpmbuild(macros) >= 1.566
 BuildRequires:	sed >= 4.0
@@ -194,7 +194,7 @@ cp -p ${BDIR}/org.openni.jar $RPM_BUILD_ROOT%{_javadir}
 %endif
 
 %if %{with mono}
-gacutil -i ${BDIR}/OpenNI.net.dll -package 2.0 -root $RPM_BUILD_ROOT%{_prefix}/lib
+gacutil -i ${BDIR}/OpenNI.net.dll -package 4.5 -root $RPM_BUILD_ROOT%{_prefix}/lib
 %endif
 
 install -d $RPM_BUILD_ROOT%{_pkgconfigdir}
@@ -262,6 +262,6 @@ fi
 %if %{with mono}
 %files -n dotnet-OpenNI
 %defattr(644,root,root,755)
-%{_prefix}/lib/mono/2.0/OpenNI.net.dll
+%{_prefix}/lib/mono/4.5/OpenNI.net.dll
 %{_prefix}/lib/mono/gac/OpenNI.net
 %endif
