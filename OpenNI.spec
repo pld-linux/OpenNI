@@ -25,7 +25,9 @@ Source0:	https://github.com/OpenNI/OpenNI/tarball/Stable-%{version}/%{name}-%{ve
 Source1:	libopenni.pc
 Patch0:		%{name}-system-libs.patch
 Patch1:		%{name}-nosse.patch
-URL:		http://openni.org/
+Patch2:		%{name}-c++.patch
+Patch3:		%{name}-mono.patch
+URL:		https://github.com/OpenNI/OpenNI/
 BuildRequires:	OpenGL-devel
 # for examples
 BuildRequires:	OpenGL-glut-devel >= 3
@@ -149,6 +151,8 @@ Interfejs .NET do OpenNI.
 %undos Platform/Linux/Build/Samples/NiUserTracker/Makefile
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
+%patch3 -p1
 
 %build
 %{__make} -C Platform/Linux/Build clean
@@ -159,7 +163,8 @@ export CFLAGS="%{rpmcflags}"
 	HOSTPLATFORM=%{openni_platform} \
 	SSE_GENERATION=%{?with_sse3:3}%{!?with_sse3:%{?with_sse2:2}} \
 	%{?with_ssse3:SSSE3_ENABLED=1} \
-	%{!?with_java:ALL_JAVA_PROJS= JAVA_SAMPLES=}
+	%{!?with_java:ALL_JAVA_PROJS= JAVA_SAMPLES=} \
+	MONO_INSTALLED=%{?with_mono:1}
 
 %if %{with apidocs}
 cd Source/DoxyGen

@@ -1,0 +1,11 @@
+--- OpenNI-OpenNI-1e9524f/Platform/Linux/Build/Common/CommonCSMakefile.orig	2013-11-12 17:30:03.000000000 +0100
++++ OpenNI-OpenNI-1e9524f/Platform/Linux/Build/Common/CommonCSMakefile	2017-11-29 16:54:33.678880973 +0100
+@@ -45,7 +45,7 @@
+ 	TARGET = winexe
+ endif
+ 
+-OUTPUT_COMMAND = gmcs -out:$(OUTPUT_FILE) -target:$(TARGET) $(CSFLAGS) $(USED_NETLIBS_OPTION) $(SRC_FILES)
++OUTPUT_COMMAND = mcs -out:$(OUTPUT_FILE) -target:$(TARGET) $(CSFLAGS) $(USED_NETLIBS_OPTION) $(SRC_FILES)
+ 
+ #############################################################################
+ # Targets
