@@ -95,9 +95,7 @@ Pliki nagłówkowe biblioteki OpenNI.
 Summary:	OpenNI user guide
 Summary(pl.UTF-8):	Podręcznik użytkownika OpenNI
 Group:		Documentation
-%if "%{_rpmversion}" >= "5"
 BuildArch:	noarch
-%endif
 
 %description doc
 OpenNI user guide in PDF format.
@@ -109,9 +107,7 @@ Podręcznik użytkownika OpenNI w formacie PDF.
 Summary:	OpenNI API documentation
 Summary(pl.UTF-8):	Dokumentacja API biblioteki OpenNI
 Group:		Documentation
-%if "%{_rpmversion}" >= "5"
 BuildArch:	noarch
-%endif
 
 %description apidocs
 API and internal documentation for OpenNI library.
